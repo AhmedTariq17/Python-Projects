@@ -42,7 +42,6 @@ planet_info = {
         'Interesting Facts': 'Mars is home to the tallest volcano, Olympus Mons, and the deepest canyon, Valles Marineris. Its day is similar in length to Earth\'s at 24.6 hours.',
         'Exploration': 'Mars has been a focal point for space exploration with multiple rovers and landers sent to its surface to study its climate and geology.',
     },
-    # ... Add more sections for each planet as needed
 }
 
 class Planet:
@@ -67,7 +66,6 @@ class Planet:
         self.x_vel = 0
         self.y_vel = 0
 
-        # Texture will be loaded later
         self.texture = None
 
     def draw(self, win):
@@ -176,7 +174,6 @@ def main():
     planets = [sun, earth, mars, mercury, venus]
 
     # Load textures
-    # Note: Replace 'path_to_texture' with actual paths to the images
     earth.add_texture('earth_texture.png')
     mars.add_texture('mars_texture.png')
     mercury.add_texture('mercury_texture.png')
