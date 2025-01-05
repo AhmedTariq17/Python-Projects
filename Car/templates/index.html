@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <!-- Specifies the character encoding and viewport settings for responsiveness -->
+    <meta charset="UTF-8"> <!-- Sets the character encoding to UTF-8 -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"> <!-- Ensures the page is responsive on all devices -->
+    
+    <!-- Page title displayed in the browser tab -->
+    <title>Car Information Fetcher</title>
+    
+    <!-- Links to the external CSS file for styling -->
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <!-- Main container for the page content -->
+    <div class="container">
+        <!-- Main heading for the page -->
+        <h1>Car Information Fetcher</h1>
+        
+        <!-- Form to fetch car data based on user input -->
+        <form method="post"> <!-- Sends the form data to the server using the POST method -->
+            <!-- Input field for the car make -->
+            <label for="make">Car Make:</label> <!-- Label for the car make input -->
+            <input type="text" id="make" name="make" required> <!-- Input box for the car make (required field) -->
+            <br>
+            
+            <!-- Input field for the car model -->
+            <label for="model">Car Model:</label> <!-- Label for the car model input -->
+            <input type="text" id="model" name="model" required> <!-- Input box for the car model (required field) -->
+            <br>
+            
+            <!-- Input field for the car year -->
+            <label for="year">Car Year:</label> <!-- Label for the car year input -->
+            <input type="text" id="year" name="year" required> <!-- Input box for the car year (required field) -->
+            <br>
+            
+            <!-- Button to submit the form and fetch car data -->
+            <button type="submit">Fetch Data</button>
+        </form>
+        
+        <!-- Form with a button to navigate to the comparison page -->
+        <form action="/compare" method="get"> <!-- Redirects to the /compare route using the GET method -->
+            <button type="submit">Compare Cars</button> <!-- Button to navigate to the compare page -->
+        </form>
+        
+        <!-- Conditional block to display car details or an error message -->
+        {% if tables %} <!-- Checks if car data tables exist -->
+            <!-- Section for displaying car details -->
+            <h2>Car Details</h2> <!-- Subheading for the car details section -->
+            <div class="table-container"> <!-- Wrapper to ensure tables fit within the container -->
+                {% for table in tables %} <!-- Loops through and displays each table -->
+                    {{ table|safe }} <!-- Renders the HTML table safely -->
+                {% endfor %}
+            </div>
+        {% elif error %} <!-- Checks if there is an error -->
+            <!-- Displays an error message if no car data is found -->
+            <h2>{{ error }}</h2> <!-- Dynamic error message from the server -->
+        {% endif %}
+    </div>
+</body>
+</html>

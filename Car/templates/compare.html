@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <!-- Metadata about the document -->
+    <meta charset="UTF-8"> <!-- Specifies the character encoding for the document -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"> <!-- Makes the page responsive to different screen sizes -->
+    <title>Compare Cars</title> <!-- Title displayed on the browser tab -->
+    
+    <!-- Link to the external CSS file for styling -->
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <!-- Main container for the content -->
+    <div class="container">
+        <h1>Compare Cars</h1> <!-- Page heading -->
+        
+        <!-- Form for inputting details of two cars -->
+        <form method="post"> <!-- Sends data to the server using POST -->
+            <div class="car-input"> <!-- Section for Car 1 details -->
+                <h2>Car 1</h2> <!-- Subheading for Car 1 -->
+                <label for="make1">Car Make:</label> <!-- Label for Car 1's make -->
+                <input type="text" id="make1" name="make1" required> <!-- Input field for Car 1's make -->
+                <br>
+                <label for="model1">Car Model:</label> <!-- Label for Car 1's model -->
+                <input type="text" id="model1" name="model1" required> <!-- Input field for Car 1's model -->
+                <br>
+                <label for="year1">Car Year:</label> <!-- Label for Car 1's year -->
+                <input type="text" id="year1" name="year1" required> <!-- Input field for Car 1's year -->
+            </div>
+            
+            <div class="car-input"> <!-- Section for Car 2 details -->
+                <h2>Car 2</h2> <!-- Subheading for Car 2 -->
+                <label for="make2">Car Make:</label> <!-- Label for Car 2's make -->
+                <input type="text" id="make2" name="make2" required> <!-- Input field for Car 2's make -->
+                <br>
+                <label for="model2">Car Model:</label> <!-- Label for Car 2's model -->
+                <input type="text" id="model2" name="model2" required> <!-- Input field for Car 2's model -->
+                <br>
+                <label for="year2">Car Year:</label> <!-- Label for Car 2's year -->
+                <input type="text" id="year2" name="year2" required> <!-- Input field for Car 2's year -->
+            </div>
+            
+            <!-- Submit button for the form -->
+            <button type="submit">Compare</button>
+        </form>
+        
+        <!-- Display comparison tables if data exists -->
+        {% if table1 and table2 %} <!-- Conditional to check if data for both cars is available -->
+            <h2>Car 1 Details</h2> <!-- Heading for Car 1's table -->
+            <div class="table-container"> <!-- Wrapper to ensure table fits within the layout -->
+                {{ table1|safe }} <!-- Render Car 1's details table -->
+            </div>
+            <h2>Car 2 Details</h2> <!-- Heading for Car 2's table -->
+            <div class="table-container"> <!-- Wrapper to ensure table fits within the layout -->
+                {{ table2|safe }} <!-- Render Car 2's details table -->
+            </div>
+        {% endif %}
+    </div>
+</body>
+</html>
